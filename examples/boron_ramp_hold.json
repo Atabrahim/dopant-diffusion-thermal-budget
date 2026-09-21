@@ -1,0 +1,11 @@
+{
+  "material": {
+    "prefactor_m2_per_s": 7.6e-05,
+    "activation_energy_eV": 3.46
+  },
+  "thermal_schedule": [
+    {"start_temperature_K": 298.15, "end_temperature_K": 1273.15, "duration_s": 90.0},
+    {"start_temperature_K": 1273.15, "end_temperature_K": 1273.15, "duration_s": 1200.0},
+    {"start_temperature_K": 1273.15, "end_temperature_K": 298.15, "duration_s": 90.0}
+  ]
+}
