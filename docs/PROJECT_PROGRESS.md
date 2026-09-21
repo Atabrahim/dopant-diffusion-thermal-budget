@@ -27,34 +27,36 @@ Excluded from V1: electrical activation; concentration-dependent or defect-media
 | Milestone | Status | Evidence |
 | --- | --- | --- |
 | Recover original roadmap and inspect Projects 1–3 | VERIFIED, PUBLISHED | Original portfolio record and GitHub repositories checked. |
-| Create repository, scope, model documentation and recovery record | VERIFIED, PUBLISHED | Initial GitHub commit `d2f3a9a`. |
-| Implement material and thermal-schedule core | IN PROGRESS | Local implementation awaiting tests and publication. |
-| Implement conservative diffusion solver and analytical references | NOT STARTED | — |
-| Validate conservation, analytical cases and convergence | NOT STARTED | — |
-| Add process comparison, figures and reproducible reports | NOT STARTED | — |
+| Create repository, scope, model documentation and recovery record | VERIFIED, PUBLISHED | Repository and baseline documentation are published. |
+| Implement material and thermal-schedule core | VERIFIED, PUBLISHED | Arrhenius boron model, schedule integration and six focused tests are published. |
+| Implement conservative diffusion solver and analytical references | VERIFIED, PUBLISHED | Sparse finite-volume backward-Euler solver and Gaussian/erfc references are published. |
+| Validate conservation, analytical cases and convergence | VERIFIED, PUBLISHED | 15 tests pass locally; analytical comparison and mesh/time refinement are included. |
+| Add process comparison, figures and reproducible reports | IN PROGRESS | Next V1 milestone. |
 | Package, CLI, documentation and CI | NOT STARTED | — |
 | Final QA and v0.1.0 release | NOT STARTED | — |
 
 ## Scientific validation
 
-No numerical PDE result has yet been validated. The initial documentation defines the planned analytical reference cases: a reflected Gaussian under no-flux boundaries and the complementary-error-function solution for constant surface concentration.
+The sparse finite-volume solver was tested against independent analytical solutions at constant diffusivity. On a 4 µm domain with 800 cells and 1,000 implicit substeps, the reflected-Gaussian relative L2 error is `1.3647e-4`; the finite-source relative dose-balance error is `6.4e-14`. For a constant surface concentration on a 4 µm domain with 1,200 cells, the erfc relative L2 error below 1.5 µm is `1.8656e-4`; the flux-balance error relative to final dose is `6.02e-13`.
+
+The suite also checks that refining both the mesh and the backward-Euler substeps reduces analytical error. The Gaussian validation domain was enlarged from 2 µm to 4 µm after diagnosis showed that the far no-flux boundary was contaminating a semi-infinite analytical comparison. This is recorded as a validation correction, not hidden by loosening the test.
 
 ## Test status
 
-No automated tests have been run for Project 4 yet.
+`15 passed` locally in the project virtual environment after the solver-validation milestone. No test failures are currently known.
 
 ## Known issues
 
 - The selected diffusivity is a representative dilute-Fickian parameterisation, not a calibration of a particular furnace or implant process.
-- Thermal schedule and material modules are untested locally at this checkpoint.
+- The supplied Arrhenius parameters are illustrative and configurable; they do not represent a calibrated furnace/implant flow.
+- The current solver assumes spatially uniform diffusivity, so it cannot model concentration- or defect-dependent diffusion.
 
 ## Remaining work
 
-1. Add tests for Arrhenius and thermal-budget behavior.
-2. Implement and validate the conservative solver.
-3. Build diagnostics, figures, reports and CLI.
-4. Perform package/CI/release QA.
+1. Build the fixed V1 process-comparison workflow, figures and reproducible reports.
+2. Add a CLI, documented example and GitHub Actions CI.
+3. Perform package, clean-install and release QA.
 
 ## Latest verified GitHub checkpoint
 
-`d2f3a9a` — initial GitHub-created scaffold. The local additions in the working tree are newer and must be tested and published before the next milestone is marked complete.
+`4af5851` — solver diagnostics test published to `main`. This progress-document update is the next local, tested change to publish.
