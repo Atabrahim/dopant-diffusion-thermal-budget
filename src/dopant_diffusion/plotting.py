@@ -5,6 +5,8 @@ from __future__ import annotations
 from collections.abc import Iterable
 from pathlib import Path
 
+import numpy as np
+
 from .thermal import ThermalSchedule
 from .workflow import SimulationOutcome
 
@@ -71,7 +73,21 @@ def plot_concentration_profiles(outcomes: Iterable[SimulationOutcome], output_pa
     axis.set_title("Finite-source boron diffusion in silicon")
     # The reflected-Gaussian far-tail can be many decades below a useful plot.
     # Base the visible range on reported quantities, not the numerical tail.
-    axis.set_ylim(1.0e13, 2.0 * plotted_maximum_cm3)
+    display_floor_cm3 = 1.0e13
+    axis.set_ylim(display_floor_cm3, 2.0 * plotted_maximum_cm3)
+    visible_depth_m = 0.0
+    initial_visible = first.initial_concentration_m3 >= display_floor_cm3 * 1.0e6
+    if np.any(initial_visible):
+        visible_depth_m = float(first.case.grid.centres_m[initial_visible][-1])
+    for outcome in outcomes:
+        visible = outcome.result.concentration_m3 >= display_floor_cm3 * 1.0e6
+        if np.any(visible):
+            visible_depth_m = max(visible_depth_m, float(outcome.case.grid.centres_m[visible][-1]))
+    if visible_depth_m:
+        axis.set_xlim(
+            0.0,
+            min(max(case.case.grid.length_m for case in outcomes), 1.15 * visible_depth_m) * 1.0e9,
+        )
     axis.legend(frameon=False, fontsize=8)
     axis.grid(alpha=0.2, which="both")
     _save(figure, output_path)
