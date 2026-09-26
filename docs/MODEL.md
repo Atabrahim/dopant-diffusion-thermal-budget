@@ -2,43 +2,43 @@
 
 ## Chemical concentration transport
 
-The package models the chemical boron concentration \(C(x,t)\) in silicon using
+The package models the chemical boron concentration $C(x,t)$ in silicon using
 
-\[
+$$
 \frac{\partial C}{\partial t}=\frac{\partial}{\partial x}\left[D(T)\frac{\partial C}{\partial x}\right].
-\]
+$$
 
 | Symbol | Meaning | SI unit |
 | --- | --- | --- |
-| \(C\) | chemical boron concentration | m\(^{-3}\) |
-| \(x\) | depth below the surface | m |
-| \(t\) | time | s |
-| \(D\) | boron chemical diffusivity | m\(^2\) s\(^{-1}\) |
-| \(T\) | absolute temperature | K |
+| $C$ | chemical boron concentration | m$^{-3}$ |
+| $x$ | depth below the surface | m |
+| $t$ | time | s |
+| $D$ | boron chemical diffusivity | m$^2$ s$^{-1}$ |
+| $T$ | absolute temperature | K |
 
-For V1, \(D\) is spatially uniform and depends only on the supplied thermal history:
+For V1, $D$ is spatially uniform and depends only on the supplied thermal history:
 
-\[
+$$
 D(T)=D_0\exp\left[-\frac{E_a}{k_B T}\right].
-\]
+$$
 
-The default boron-in-silicon parameterisation is \(D_0=0.76\ \mathrm{cm^2\,s^{-1}}\) and \(E_a=3.46\ \mathrm{eV}\), exposed as inputs rather than universal material constants. Reported values depend on concentration, interstitial/vacancy conditions, measurement technique and the applicable temperature range.
+The default boron-in-silicon parameterisation is $D_0=0.76\ \mathrm{cm^2\,s^{-1}}$ and $E_a=3.46\ \mathrm{eV}$, exposed as inputs rather than universal material constants. Reported values depend on concentration, interstitial/vacancy conditions, measurement technique and the applicable temperature range.
 
 ## Boundary-condition cases
 
 ### Finite source
 
-A buried, dose-normalised reflected Gaussian is evolved with zero flux at both boundaries. The surface condition is \(\partial C/\partial x=0\), so total simulated dose changes only through explicitly reported numerical flux balance. This is a useful model for limited-dose drive-in, not an exact implantation simulator.
+A buried, dose-normalised reflected Gaussian is evolved with zero flux at both boundaries. The surface condition is $\partial C/\partial x=0$, so total simulated dose changes only through explicitly reported numerical flux balance. This is a useful model for limited-dose drive-in, not an exact implantation simulator.
 
 ### Constant surface concentration
 
-The surface concentration is fixed to \(C_s\) and the deep boundary is held at zero when the domain is chosen sufficiently long. On a semi-infinite domain starting from zero concentration, the analytical result is
+The surface concentration is fixed to $C_s$ and the deep boundary is held at zero when the domain is chosen sufficiently long. On a semi-infinite domain starting from zero concentration, the analytical result is
 
-\[
+$$
 C(x,\Theta)=C_s\operatorname{erfc}\left(\frac{x}{2\sqrt{\Theta}}\right),
 \qquad
 \Theta=\int_0^t D[T(\tau)]\,d\tau.
-\]
+$$
 
 The finite computational domain is therefore selected wide enough that the far-boundary approximation is quantitatively checked.
 
