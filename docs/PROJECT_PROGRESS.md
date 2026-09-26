@@ -32,8 +32,8 @@ Excluded from V1: electrical activation; concentration-dependent or defect-media
 | Implement conservative diffusion solver and analytical references | VERIFIED, PUBLISHED | Sparse finite-volume backward-Euler solver and Gaussian/erfc references are published. |
 | Validate conservation, analytical cases and convergence | VERIFIED, PUBLISHED | 15 tests pass locally; analytical comparison and mesh/time refinement are included. |
 | Add process comparison, figures and reproducible reports | VERIFIED, PUBLISHED | Reproduction script generates three inspected figures, two profile reports and six sensitivity rows; remote tree matches local files. |
-| Package, CLI, documentation and CI | IN PROGRESS | JSON-driven CLI and documentation are published; CI and clean installation remain. |
-| Final QA and v0.1.0 release | NOT STARTED | — |
+| Package, CLI, documentation and CI | VERIFIED LOCALLY, PUBLISHED; REMOTE CI IN PROGRESS | sdist and wheel build; wheel installs outside repository; installed API, CLI and example work; GitHub Actions workflow published and running. |
+| Final QA and v0.1.0 release | IN PROGRESS | 19 tests, Ruff, figure inspection and deterministic output hashes pass; CI conclusion/release remain. |
 
 ## Scientific validation
 
@@ -43,7 +43,9 @@ The suite also checks that refining both the mesh and the backward-Euler substep
 
 ## Test status
 
-`19 passed` locally with the process workflow and CLI tests. Ruff lint and formatting checks pass; the documented CLI and reproduction script run end-to-end.
+`19 passed, 0 failed, 0 skipped` locally with the process workflow and CLI tests. Ruff lint and formatting checks pass. Repeated reproduction produces identical hashes for all tracked figures and reports.
+
+An isolated build produced the V1 source archive and wheel. The wheel was installed in a fresh environment outside the repository with the plotting extra. The import resolved to the new environment's `site-packages`; the public solver API, documented CLI and reproducibility script ran successfully. The rebuilt package carries version `0.1.0` with an SPDX MIT license.
 
 ## Known issues
 
@@ -53,10 +55,9 @@ The suite also checks that refining both the mesh and the backward-Euler substep
 
 ## Remaining work
 
-1. Publish this progress update and the figure/report provenance notes.
-2. Configure GitHub Actions and verify a successful run.
-3. Build sdist/wheel, install in a clean environment, verify README commands and release QA.
+1. Verify GitHub Actions on the latest published commit; diagnose any failure.
+2. Final GitHub presentation review, completion record and v0.1.0 release.
 
 ## Latest verified GitHub checkpoint
 
-`1d7ea5f` — process reports, figures, CLI, tests and README published to `main`; local/remote file trees compared. This progress update is the next change to publish.
+`621dc9c` — final QA changes and GitHub Actions workflow published to `main`; local/remote file trees compared. The progress update containing this record is next to publish.
