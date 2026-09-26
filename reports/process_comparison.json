@@ -1,0 +1,160 @@
+{
+  "kind": "synthetic model comparison; not measured process data",
+  "baseline": {
+    "case": "1000 \u00b0C, 20 min drive-in",
+    "model": {
+      "quantity": "chemical boron concentration",
+      "initial_profile": "reflected Gaussian",
+      "transport": "one-dimensional Fickian diffusion with spatially uniform D(T)"
+    },
+    "units": {
+      "depth": "nm",
+      "concentration": "cm^-3",
+      "dose": "cm^-2",
+      "thermal_budget": "m^2"
+    },
+    "thermal_schedule": [
+      {
+        "start_temperature_K": 298.15,
+        "end_temperature_K": 1273.15,
+        "duration_s": 90.0
+      },
+      {
+        "start_temperature_K": 1273.15,
+        "end_temperature_K": 1273.15,
+        "duration_s": 1200.0
+      },
+      {
+        "start_temperature_K": 1273.15,
+        "end_temperature_K": 298.15,
+        "duration_s": 90.0
+      }
+    ],
+    "grid": {
+      "length_m": 2e-06,
+      "cells": 800
+    },
+    "input": {
+      "dose_cm2": 10000000000000.0,
+      "projected_range_nm": 200.0,
+      "standard_deviation_nm": 50.0,
+      "threshold_cm3": 9.999999999999998e+16
+    },
+    "output": {
+      "thermal_budget_m2": 1.84535678860824e-15,
+      "initial_dose_cm2": 10000000000000.002,
+      "final_dose_cm2": 10000000000000.283,
+      "dose_balance_error_cm2": 0.2816,
+      "max_concentration_cm3": 5.073462185169873e+17,
+      "threshold_crossings_nm": [
+        57.19226499305756,
+        341.7193506058309
+      ],
+      "implicit_steps": 600
+    }
+  },
+  "cooler_schedule": {
+    "case": "950 \u00b0C, 20 min drive-in",
+    "model": {
+      "quantity": "chemical boron concentration",
+      "initial_profile": "reflected Gaussian",
+      "transport": "one-dimensional Fickian diffusion with spatially uniform D(T)"
+    },
+    "units": {
+      "depth": "nm",
+      "concentration": "cm^-3",
+      "dose": "cm^-2",
+      "thermal_budget": "m^2"
+    },
+    "thermal_schedule": [
+      {
+        "start_temperature_K": 298.15,
+        "end_temperature_K": 1223.15,
+        "duration_s": 90.0
+      },
+      {
+        "start_temperature_K": 1223.15,
+        "end_temperature_K": 1223.15,
+        "duration_s": 1200.0
+      },
+      {
+        "start_temperature_K": 1223.15,
+        "end_temperature_K": 298.15,
+        "duration_s": 90.0
+      }
+    ],
+    "grid": {
+      "length_m": 2e-06,
+      "cells": 800
+    },
+    "input": {
+      "dose_cm2": 10000000000000.0,
+      "projected_range_nm": 200.0,
+      "standard_deviation_nm": 50.0,
+      "threshold_cm3": 9.999999999999998e+16
+    },
+    "output": {
+      "thermal_budget_m2": 5.083152148818473e-16,
+      "initial_dose_cm2": 10000000000000.002,
+      "final_dose_cm2": 10000000000000.422,
+      "dose_balance_error_cm2": 0.4208,
+      "max_concentration_cm3": 6.72736774671793e+17,
+      "threshold_crossings_nm": [
+        84.21083964407477,
+        315.78703154468656
+      ],
+      "implicit_steps": 600
+    }
+  },
+  "sensitivity_definition": "declared input sensitivity, not a probabilistic uncertainty interval",
+  "sensitivity_rows": [
+    {
+      "parameter": "diffusivity multiplier",
+      "value": 0.5,
+      "thermal_budget_m2": 9.2267839430412e-16,
+      "max_concentration_cm3": 6.053369514855112e+17,
+      "crossing_count": 2.0,
+      "deepest_threshold_crossing_nm": 325.075914795488
+    },
+    {
+      "parameter": "diffusivity multiplier",
+      "value": 1.0,
+      "thermal_budget_m2": 1.84535678860824e-15,
+      "max_concentration_cm3": 5.073462185169873e+17,
+      "crossing_count": 2.0,
+      "deepest_threshold_crossing_nm": 341.7193506058309
+    },
+    {
+      "parameter": "diffusivity multiplier",
+      "value": 2.0,
+      "thermal_budget_m2": 3.69071357721648e-15,
+      "max_concentration_cm3": 4.018720783425564e+17,
+      "crossing_count": 1.0,
+      "deepest_threshold_crossing_nm": 365.5961987589636
+    },
+    {
+      "parameter": "temperature offset",
+      "value": -10.0,
+      "thermal_budget_m2": 1.437510535055919e-15,
+      "max_concentration_cm3": 5.444031442707665e+17,
+      "crossing_count": 2.0,
+      "deepest_threshold_crossing_nm": 334.9154902101698
+    },
+    {
+      "parameter": "temperature offset",
+      "value": 0.0,
+      "thermal_budget_m2": 1.84535678860824e-15,
+      "max_concentration_cm3": 5.073462185169873e+17,
+      "crossing_count": 2.0,
+      "deepest_threshold_crossing_nm": 341.7193506058309
+    },
+    {
+      "parameter": "temperature offset",
+      "value": 10.0,
+      "thermal_budget_m2": 2.3597166583162575e-15,
+      "max_concentration_cm3": 4.698871409568799e+17,
+      "crossing_count": 2.0,
+      "deepest_threshold_crossing_nm": 349.3587843576358
+    }
+  ]
+}

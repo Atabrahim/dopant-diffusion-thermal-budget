@@ -1,0 +1,53 @@
+{
+  "case": "950 \u00b0C, 20 min drive-in",
+  "model": {
+    "quantity": "chemical boron concentration",
+    "initial_profile": "reflected Gaussian",
+    "transport": "one-dimensional Fickian diffusion with spatially uniform D(T)"
+  },
+  "units": {
+    "depth": "nm",
+    "concentration": "cm^-3",
+    "dose": "cm^-2",
+    "thermal_budget": "m^2"
+  },
+  "thermal_schedule": [
+    {
+      "start_temperature_K": 298.15,
+      "end_temperature_K": 1223.15,
+      "duration_s": 90.0
+    },
+    {
+      "start_temperature_K": 1223.15,
+      "end_temperature_K": 1223.15,
+      "duration_s": 1200.0
+    },
+    {
+      "start_temperature_K": 1223.15,
+      "end_temperature_K": 298.15,
+      "duration_s": 90.0
+    }
+  ],
+  "grid": {
+    "length_m": 2e-06,
+    "cells": 800
+  },
+  "input": {
+    "dose_cm2": 10000000000000.0,
+    "projected_range_nm": 200.0,
+    "standard_deviation_nm": 50.0,
+    "threshold_cm3": 9.999999999999998e+16
+  },
+  "output": {
+    "thermal_budget_m2": 5.083152148818473e-16,
+    "initial_dose_cm2": 10000000000000.002,
+    "final_dose_cm2": 10000000000000.422,
+    "dose_balance_error_cm2": 0.4208,
+    "max_concentration_cm3": 6.72736774671793e+17,
+    "threshold_crossings_nm": [
+      84.21083964407477,
+      315.78703154468656
+    ],
+    "implicit_steps": 600
+  }
+}
