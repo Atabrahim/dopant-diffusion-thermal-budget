@@ -1,0 +1,32 @@
+name: Scientific checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install package and quality tools
+        run: python -m pip install ".[dev,plots]"
+      - name: Run scientific and software tests
+        run: python -m pytest -q
+      - name: Check lint and formatting
+        run: |
+          python -m ruff check .
+          python -m ruff format --check .
+      - name: Reproduce the declared process example
+        run: python examples/reproduce.py
+      - name: Build source and wheel distributions
+        run: python -m build
