@@ -14,29 +14,29 @@ The tracked case study is synthetic model output. It is **not** wafer data, an i
 
 ## Model
 
-For spatially uniform, temperature-dependent chemical diffusivity, the concentration \(C(x,t)\) obeys Fick's second law:
+For spatially uniform, temperature-dependent chemical diffusivity, the concentration $C(x,t)$ obeys Fick's second law:
 
-\[
+$$
 \frac{\partial C}{\partial t} =
 \frac{\partial}{\partial x}\left[D(T)\frac{\partial C}{\partial x}\right].
-\]
+$$
 
 The V1 boron-in-silicon model uses the configurable Arrhenius form
 
-\[
+$$
 D(T)=D_0\exp\left(-\frac{E_a}{k_B T}\right),
 \qquad
 \Theta=\int_0^{t}D[T(\tau)]\,d\tau,
-\]
+$$
 
-where \(x\) is depth (m), \(t\) is time (s), \(C\) is chemical concentration (m\(^{-3}\)), \(D\) is diffusivity (m\(^2\) s\(^{-1}\)), \(T\) is absolute temperature (K), and \(\Theta\) is the integrated diffusivity (m\(^2\)). The default inputs \(D_0=0.76\ \mathrm{cm^2\,s^{-1}}\) and \(E_a=3.46\ \mathrm{eV}\) are representative dilute-Fickian values, exposed as inputs rather than universal constants.
+where $x$ is depth (m), $t$ is time (s), $C$ is chemical concentration (m$^{-3}$), $D$ is diffusivity (m$^2$ s$^{-1}$), $T$ is absolute temperature (K), and $\Theta$ is the integrated diffusivity (m$^2$). The default inputs $D_0=0.76\ \mathrm{cm^2\,s^{-1}}$ and $E_a=3.46\ \mathrm{eV}$ are representative dilute-Fickian values, exposed as inputs rather than universal constants.
 
 Read the full [physical model, units, boundary conditions, and assumptions](docs/MODEL.md).
 
 ## Features
 
 - Piecewise-linear ramp-and-hold schedules with numerical thermal-budget integration.
-- Cell-centred finite-volume discretisation and backward-Euler stepping in \(\Theta\), solved with SciPy sparse linear algebra.
+- Cell-centred finite-volume discretisation and backward-Euler stepping in $\Theta$, solved with SciPy sparse linear algebra.
 - Finite-source, zero-flux simulations from a dose-normalised reflected Gaussian.
 - Fixed-surface-concentration boundary support and complementary-error-function reference solution.
 - Unit-labelled JSON/CSV reports, including all concentration-threshold crossings and dose-balance error.
@@ -45,12 +45,12 @@ Read the full [physical model, units, boundary conditions, and assumptions](docs
 
 ## Reproduced V1 case study
 
-The script below compares the same finite source after 20-minute peak holds at 1000 °C and 950 °C, with 90-second linear ramps. It evaluates a 2 µm, 800-cell domain and reports a chemical-concentration threshold of \(10^{17}\ \mathrm{cm^{-3}}\).
+The script below compares the same finite source after 20-minute peak holds at 1000 °C and 950 °C, with 90-second linear ramps. It evaluates a 2 µm, 800-cell domain and reports a chemical-concentration threshold of $10^{17}\ \mathrm{cm^{-3}}$.
 
-| Case | Thermal budget \(\Theta\) (m²) | Reported threshold crossings (nm) |
+| Case | Thermal budget $\Theta$ (m²) | Reported threshold crossings (nm) |
 | --- | ---: | ---: |
-| 1000 °C, 20 min | \(1.845357\times10^{-15}\) | 57.19, 341.72 |
-| 950 °C, 20 min | \(5.083152\times10^{-16}\) | 84.21, 315.79 |
+| 1000 °C, 20 min | $1.845357\times10^{-15}$ | 57.19, 341.72 |
+| 950 °C, 20 min | $5.083152\times10^{-16}$ | 84.21, 315.79 |
 
 For this non-monotonic finite-source profile, a threshold can have two crossings. The deepest crossing is a transparent descriptive metric in the sensitivity plot; it is not automatically a physical electrical junction depth.
 
@@ -66,10 +66,10 @@ The numerical solver is independently checked at constant diffusivity against an
 
 | Check | Result |
 | --- | ---: |
-| Reflected-Gaussian reference, relative L2 error | \(1.3647\times10^{-4}\) |
-| Finite-source relative dose-balance error | \(6.4\times10^{-14}\) |
-| Constant-surface erfc reference, relative L2 error | \(1.8656\times10^{-4}\) |
-| Fixed-surface relative flux-balance error | \(6.02\times10^{-13}\) |
+| Reflected-Gaussian reference, relative L2 error | $1.3647\times10^{-4}$ |
+| Finite-source relative dose-balance error | $6.4\times10^{-14}$ |
+| Constant-surface erfc reference, relative L2 error | $1.8656\times10^{-4}$ |
+| Fixed-surface relative flux-balance error | $6.02\times10^{-13}$ |
 
 The tests also verify mesh/time refinement and invalid-input handling. A 2 µm validation domain was rejected after the far no-flux boundary measurably contaminated the semi-infinite Gaussian benchmark; the validated comparison uses a 4 µm domain. Details and limits are in [docs/VALIDATION.md](docs/VALIDATION.md).
 
@@ -138,7 +138,7 @@ docs/                   model, validation and recovery/progress documentation
 ## Assumptions and limitations
 
 - One-dimensional chemical diffusion only; no activation or carrier-statistics calculation.
-- Spatially uniform dilute-Fickian \(D(T)\); no concentration dependence, point defects, clustering, transient-enhanced diffusion, segregation, or oxidation effects.
+- Spatially uniform dilute-Fickian $D(T)$; no concentration dependence, point defects, clustering, transient-enhanced diffusion, segregation, or oxidation effects.
 - A reflected Gaussian is a transparent dose-limited initial condition, not an ion-implant damage simulator.
 - The examples are synthetic model studies. They do not constitute experimental validation or industrial process calibration.
 - A finite computational domain approximates semi-infinite analytical cases only when boundary effects are demonstrated negligible.
