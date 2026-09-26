@@ -29,7 +29,7 @@ D(T)=D_0\exp\left(-\frac{E_a}{k_B T}\right),
 \Theta=\int_0^{t}D[T(\tau)]\,d\tau,
 $$
 
-where $x$ is depth (m), $t$ is time (s), $C$ is chemical concentration (m$^{-3}$), $D$ is diffusivity (m$^2$ s$^{-1}$), $T$ is absolute temperature (K), and $\Theta$ is the integrated diffusivity (m$^2$). The default inputs $D_0=0.76\ \mathrm{cm^2\,s^{-1}}$ and $E_a=3.46\ \mathrm{eV}$ are representative dilute-Fickian values, exposed as inputs rather than universal constants.
+where $x$ is depth (m), $t$ is time (s), $C$ is chemical concentration ($\mathrm{m}^{-3}$), $D$ is diffusivity ($\mathrm{m}^2\,\mathrm{s}^{-1}$), $T$ is absolute temperature (K), and $\Theta$ is the integrated diffusivity ($\mathrm{m}^2$). The default inputs $D_0=0.76\ \mathrm{cm^2\,s^{-1}}$ and $E_a=3.46\ \mathrm{eV}$ are representative dilute-Fickian values, exposed as inputs rather than universal constants.
 
 Read the full [physical model, units, boundary conditions, and assumptions](docs/MODEL.md).
 
