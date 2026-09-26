@@ -10,10 +10,10 @@ $$
 
 | Symbol | Meaning | SI unit |
 | --- | --- | --- |
-| $C$ | chemical boron concentration | m$^{-3}$ |
+| $C$ | chemical boron concentration | $\mathrm{m}^{-3}$ |
 | $x$ | depth below the surface | m |
 | $t$ | time | s |
-| $D$ | boron chemical diffusivity | m$^2$ s$^{-1}$ |
+| $D$ | boron chemical diffusivity | $\mathrm{m}^2\,\mathrm{s}^{-1}$ |
 | $T$ | absolute temperature | K |
 
 For V1, $D$ is spatially uniform and depends only on the supplied thermal history:
