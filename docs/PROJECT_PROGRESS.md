@@ -31,8 +31,8 @@ Excluded from V1: electrical activation; concentration-dependent or defect-media
 | Implement material and thermal-schedule core | VERIFIED, PUBLISHED | Arrhenius boron model, schedule integration and six focused tests are published. |
 | Implement conservative diffusion solver and analytical references | VERIFIED, PUBLISHED | Sparse finite-volume backward-Euler solver and Gaussian/erfc references are published. |
 | Validate conservation, analytical cases and convergence | VERIFIED, PUBLISHED | 15 tests pass locally; analytical comparison and mesh/time refinement are included. |
-| Add process comparison, figures and reproducible reports | IN PROGRESS | Next V1 milestone. |
-| Package, CLI, documentation and CI | NOT STARTED | — |
+| Add process comparison, figures and reproducible reports | VERIFIED, PUBLISHED | Reproduction script generates three inspected figures, two profile reports and six sensitivity rows; remote tree matches local files. |
+| Package, CLI, documentation and CI | IN PROGRESS | JSON-driven CLI and documentation are published; CI and clean installation remain. |
 | Final QA and v0.1.0 release | NOT STARTED | — |
 
 ## Scientific validation
@@ -43,7 +43,7 @@ The suite also checks that refining both the mesh and the backward-Euler substep
 
 ## Test status
 
-`15 passed` locally in the project virtual environment after the solver-validation milestone. No test failures are currently known.
+`19 passed` locally with the process workflow and CLI tests. Ruff lint and formatting checks pass; the documented CLI and reproduction script run end-to-end.
 
 ## Known issues
 
@@ -53,10 +53,10 @@ The suite also checks that refining both the mesh and the backward-Euler substep
 
 ## Remaining work
 
-1. Build the fixed V1 process-comparison workflow, figures and reproducible reports.
-2. Add a CLI, documented example and GitHub Actions CI.
-3. Perform package, clean-install and release QA.
+1. Publish this progress update and the figure/report provenance notes.
+2. Configure GitHub Actions and verify a successful run.
+3. Build sdist/wheel, install in a clean environment, verify README commands and release QA.
 
 ## Latest verified GitHub checkpoint
 
-`4af5851` — solver diagnostics test published to `main`. This progress-document update is the next local, tested change to publish.
+`1d7ea5f` — process reports, figures, CLI, tests and README published to `main`; local/remote file trees compared. This progress update is the next change to publish.
