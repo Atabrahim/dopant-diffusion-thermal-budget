@@ -1,8 +1,20 @@
 {
+  "case_name": "1000 C, 20 min finite-source drive-in",
   "material": {
     "prefactor_m2_per_s": 7.6e-05,
     "activation_energy_eV": 3.46
   },
+  "grid": {
+    "length_m": 2.0e-06,
+    "cells": 800
+  },
+  "finite_source": {
+    "dose_m2": 1.0e+17,
+    "projected_range_m": 2.0e-07,
+    "standard_deviation_m": 5.0e-08
+  },
+  "threshold_m3": 1.0e+23,
+  "substeps_per_segment": 200,
   "thermal_schedule": [
     {"start_temperature_K": 298.15, "end_temperature_K": 1273.15, "duration_s": 90.0},
     {"start_temperature_K": 1273.15, "end_temperature_K": 1273.15, "duration_s": 1200.0},
